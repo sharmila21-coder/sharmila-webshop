@@ -1,17 +1,21 @@
-fetch("http://localhost:3000/products")
-  .then(response => response.json())
-  .then(data => {
+const products = [
+ {id:1, name:"Laptop", price:800},
+ {id:2, name:"Phone", price:400},
+ {id:3, name:"Headphones", price:100}
+];
 
-    const container = document.getElementById("products");
+const container = document.getElementById("products");
 
-    data.forEach(product => {
-      container.innerHTML += `
-        <div>
-          <h3>${product.name}</h3>
-          <p>$${product.price}</p>
-        </div>
-      `;
-    });
+products.forEach(p=>{
+ container.innerHTML += `
+  <div>
+   <h3>${p.name}</h3>
+   <p>$${p.price}</p>
+   <button onclick="addToCart('${p.name}')">Add to Cart</button>
+  </div>
+ `;
+});
 
-  })
-  .catch(error => console.log(error));
+function addToCart(product){
+ alert(product + " added to cart");
+}
